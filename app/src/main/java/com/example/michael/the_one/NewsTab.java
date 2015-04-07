@@ -16,6 +16,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import network.VolleySingleton;
+
 
 /**
  * Created by Michael on 01/04/2015.
@@ -28,14 +30,14 @@ public class NewsTab extends Fragment {
         //Text view for the fragment
         final TextView textView = (TextView) getActivity().findViewById(R.id.textView);
 
-        // Instantiate the RequestQueue which will obtain the request for the API from the volley already running
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        // Instantiate the RequestQueue which will obtain the request for the API from the volleysingleton already running
+        RequestQueue requestQueue = VolleySingleton.getsInstance().getmRequestQueue();
 
         // Request a string response from the provided URL
         final StringRequest request = new StringRequest(Request.Method.GET, "http://php.net", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getActivity(), "RESPONSE "+response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "RESPONSE "+response, Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
 
