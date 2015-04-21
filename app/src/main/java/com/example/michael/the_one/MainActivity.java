@@ -45,7 +45,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
         // Creating The Toolbar and setting it as the Toolbar for the activity. Also getting rid of the app title for the Spinner
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         sharedPreferences= getSharedPreferences("Safiri", Context.MODE_PRIVATE);
@@ -75,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.colorWhite);
+                return getResources().getColor(R.color.colorOrange);
             }
         });
 

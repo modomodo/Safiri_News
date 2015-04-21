@@ -9,5 +9,8 @@
         <!-- Customise statusbar colour for Lollipop -->
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/colorOrange</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 </resources>
