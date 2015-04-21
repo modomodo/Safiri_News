@@ -17,7 +17,6 @@ public class VolleySingleton {
     private ImageLoader mImageLoader;
     private RequestQueue mRequestQueue; //Instance variable of type requestqueue
 
-
     private VolleySingleton(){
 
         //Initialise requestqueue using the context of the app which is handled by custom class MyApplication
@@ -40,6 +39,7 @@ public class VolleySingleton {
             }
         });
     }
+    
     public static VolleySingleton getsInstance(){
         //Static method that returns instance of class VolleySingleton
         if(sInstance == null){

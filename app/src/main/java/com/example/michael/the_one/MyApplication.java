@@ -8,6 +8,8 @@ import android.content.Context;
  * Used to get the context for the app as a whole for the use of the Volley as a Singleton pattern
  */
 public class MyApplication extends Application {
+
+     public static final String API_KEY_FAROO= "L@vyVTxqbPo4JUJw4fUkcyC-r1w_";
     private static MyApplication sInstance; //Variable of the type myapplication
 
     @Override

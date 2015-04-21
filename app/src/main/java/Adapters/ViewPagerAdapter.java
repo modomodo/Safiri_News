@@ -4,8 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.michael.the_one.HistoryTab;
 import com.example.michael.the_one.NewsTab;
+import com.example.michael.the_one.WeatherTab;
+import com.example.michael.the_one.WikipediaTab;
 
 /**
 
@@ -35,17 +36,23 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
             NewsTab newsTab = new NewsTab();
             return newsTab;
         }
-        else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        else if (position == 1)
         {
-            HistoryTab historyTab = new HistoryTab();
-            return historyTab;
+            WikipediaTab wikipediaTab = new WikipediaTab();
+            return wikipediaTab;
         }
+        else{
+            WeatherTab weatherTab = new WeatherTab();
+            return weatherTab;
+        }
+    }
 
-
+    public int getItemPosition(Object obj){
+        // POSITION_NONE makes it possible to reload the PagerAdapter
+        return POSITION_NONE;
     }
 
     // This method return the titles for the Tabs in the Tab Strip
-
     @Override
     public CharSequence getPageTitle(int position) {
         return Titles[position];
