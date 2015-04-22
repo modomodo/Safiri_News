@@ -31,7 +31,6 @@ public class WikipediaTab extends Fragment {
         query_check = query;
 
         webView = (WebView) v.findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
