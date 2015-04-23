@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 
@@ -35,6 +36,14 @@ public class articleBrowser extends ActionBarActivity {
                 if(progress == 100) {
                     pBar.setVisibility(View.GONE);
                 }
+            }
+        });
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                pBar.setVisibility(View.VISIBLE);
+                view.loadUrl(url);
+                return false;
             }
         });
         webView.getSettings().setJavaScriptEnabled(true);

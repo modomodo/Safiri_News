@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 /**
  * Created by Michael on 01/04/2015.
@@ -30,10 +31,23 @@ public class WikipediaTab extends Fragment {
         url = "http://en.m.wikipedia.org/wiki/" + query;
         query_check = query;
 
+        final ProgressBar pBar = (ProgressBar) v.findViewById(R.id.progressBarWiki);
+        pBar.setProgress(0);
+
+        pBar.setVisibility(View.VISIBLE);
+
         webView = (WebView) v.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
 
-        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebChromeClient(new WebChromeClient(){
+            public void onProgressChanged(WebView view, int progress) {
+                pBar.setProgress(progress);
+                if(progress == 100) {
+                    pBar.setVisibility(View.GONE);
+                    pBar.setProgress(0);
+                }
+            }
+        });
         webView.loadUrl(url);
 
 
