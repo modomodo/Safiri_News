@@ -50,6 +50,7 @@ public class News implements Parcelable {
                 String urlNews,
                 String urlImg,
                 String domain,
+                Long timeStamp,
                 Date publishedDate) {
         this.title = title;
         this.urlNews = urlNews;

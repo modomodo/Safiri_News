@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
             mToast.cancel();
             mToast = null;
         }
-        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         mToast.show();
     }
 
@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
         //Get the title of the app
         Title = sharedPreferences.getString("query", "Kenya");
         //Set Icon directory as string from selected value
-        Icon = "drawable/flag_" + Title.toString().toLowerCase().replaceAll("\\s+", "");
+        Icon = "drawable/flag_" + Title.toLowerCase().replaceAll("\\s+", "");
         //Obtain imageResource in int to set and change ActionBar Icon
         imageResource = getResources().getIdentifier(Icon, null, getPackageName());
         getSupportActionBar().setTitle(" " + Title);

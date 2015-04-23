@@ -7,8 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 /**
  * Created by Michael on 01/04/2015.
@@ -31,9 +31,11 @@ public class WikipediaTab extends Fragment {
         query_check = query;
 
         webView = (WebView) v.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl(url);
+
 
         return v;
     }
@@ -52,12 +54,4 @@ public class WikipediaTab extends Fragment {
 
     // Open previous opened link from history on webview when back button pressed
 
-    // Detect when the back button is pressed
-    public void onBackPressed() {
-        if(webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            // Let the system handle the back button
-        }
-    }
 }

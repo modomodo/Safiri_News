@@ -2,6 +2,8 @@ package Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -30,6 +32,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     private VolleySingleton volleySingleton; //Instance of volley singleton class to handle Image parsing
     private ImageLoader imageLoader;    //Instance of Image loader to handle image parsing
     String urlPhoto;
+    SharedPreferences sharedPreferences; //Storage area for app
+    SharedPreferences.Editor editor; //editor for shared preferences
 
     //Constructor of adapter taking context as a parameter to base for inflating the view of the custom_row
     public NewsRecyclerAdapter(Context context){
@@ -47,8 +51,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=inflater.inflate(R.layout.custom_row, parent,false); //View representing the root of the custom_row xml file to work with for recycler
-        MyViewHolder holder = new MyViewHolder(view); //A holder for the root view obtained so that the contents can be parsed
-        return holder;
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -86,13 +89,14 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @Override
     public int getItemCount() { return mListNews.size(); }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         //Fields within the custom_row component
         ImageView photo;
         TextView title;
         TextView domain;
         TextView time;
         public News currentNews;
+        CardView card;
 
         //Attach the components of text and image view within the view holder so that we can set the Titles and images
         public MyViewHolder(View itemView) {
@@ -101,19 +105,20 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             title = (TextView) itemView.findViewById(R.id.txtTitle);
             domain = (TextView) itemView.findViewById(R.id.txtDomain);
             time = (TextView) itemView.findViewById(R.id.txtTime);
+            card= (CardView) itemView.findViewById(R.id.card_view);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // item clicked
                     String selectedArticleUrl = currentNews.getUrlNews();
                     showSelectedArticle(v, selectedArticleUrl);
                 }
             });
         }
     }
+
     //Display selected article in separate inapp browser
-    private void showSelectedArticle(View view, String articleUrl) {
+    private static void showSelectedArticle(View view, String articleUrl) {
         Intent intent = new Intent(view.getContext(), articleBrowser.class);
         intent.putExtra("articleUrl", articleUrl);
         view.getContext().startActivity(intent);

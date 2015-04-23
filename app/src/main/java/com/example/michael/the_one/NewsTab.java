@@ -32,13 +32,15 @@ import network.VolleySingleton;
 /**
  * Created by Michael on 01/04/2015.
  */
+
 public class NewsTab extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     public static final String URL_FAROO = "http://www.faroo.com/api?start=1&length=10&l=en&src=news&kwic=true&i=true&f=json";
     RequestQueue requestQueue = VolleySingleton.getsInstance().getmRequestQueue(); // Used to hold the HTTP requests for the API that are sent
     RecyclerView recyclerView; //Instance of recycler view where all the news objects will displayed in
     SwipeRefreshLayout mSwipeRefreshLayout;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences; //Storage area for app
+    SharedPreferences.Editor editor; //editor for shared preferences
     String query;
 
     private ArrayList<News> listNews = new ArrayList<>(); //ArrayList to hold all news objects news handling all variables and the getter + Setters as an array list
@@ -58,6 +60,8 @@ public class NewsTab extends Fragment implements SwipeRefreshLayout.OnRefreshLis
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipeNews);
         recyclerView= (RecyclerView) layout.findViewById(R.id.newsList);
+
+        // allows for optimizations if all item views are of the same size
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         newsRecyclerAdapter = new NewsRecyclerAdapter(getActivity());
@@ -141,4 +145,5 @@ public class NewsTab extends Fragment implements SwipeRefreshLayout.OnRefreshLis
         sendJsonRequest();
         mSwipeRefreshLayout.setRefreshing(false);
     }
+
 }
