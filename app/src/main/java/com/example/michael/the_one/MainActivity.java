@@ -28,6 +28,8 @@ public class MainActivity extends ActionBarActivity {
     int imageResource;
     SharedPreferences sharedPreferences; //Storage area for app
     SharedPreferences.Editor editor; //editor for shared preferences
+    long lastPress; //Long to take into account time of back button press to handle double tap to exit
+
 
     //Method and toast to provide feedback for country selection
     private Toast mToast;
@@ -136,5 +138,17 @@ public class MainActivity extends ActionBarActivity {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - lastPress > 3000){
+            showToast("Press back again to exit");
+            lastPress = currentTime;
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 }

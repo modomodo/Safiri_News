@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +15,20 @@ import android.widget.ProgressBar;
 /**
  * Created by Michael on 01/04/2015.
  */
-public class WikipediaTab extends Fragment {
+public class WikipediaTab extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     SharedPreferences sharedPreferences;
     String query, query_check, url;
     private WebView webView;
     View v;
+    SwipeRefreshLayout wSwipeRefreshLayout;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.wikipedia_tab, container, false);
 
         //Retrieve sharedPref value to use in parsing
         sharedPreferences = getActivity().getSharedPreferences("Safiri", getActivity().MODE_PRIVATE);
+
         query = sharedPreferences.getString("query", "Kenya");
 
         url = "http://en.m.wikipedia.org/wiki/" + query;
@@ -49,7 +52,10 @@ public class WikipediaTab extends Fragment {
             }
         });
         webView.loadUrl(url);
-
+        wSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeWiki);
+        wSwipeRefreshLayout.setOnRefreshListener(this);
+        // Configure the refreshing color
+        wSwipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary);
 
         return v;
     }
@@ -66,6 +72,9 @@ public class WikipediaTab extends Fragment {
         }
     }
 
-    // Open previous opened link from history on webview when back button pressed
-
+    @Override
+    public void onRefresh() {
+        webView.loadUrl(url);
+        wSwipeRefreshLayout.setRefreshing(false);
+    }
 }

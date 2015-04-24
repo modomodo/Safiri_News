@@ -137,13 +137,7 @@ public class NewsTab extends Fragment implements SwipeRefreshLayout.OnRefreshLis
 
     @Override
     public void onRefresh() {
-        refreshContent();
-    }
-
-    private void refreshContent(){
-        //newsRecyclerAdapter.clear();
         sendJsonRequest();
         mSwipeRefreshLayout.setRefreshing(false);
     }
-
 }

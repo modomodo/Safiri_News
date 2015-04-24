@@ -35,14 +35,17 @@ public class articleBrowser extends ActionBarActivity {
                 pBar.setProgress(progress);
                 if(progress == 100) {
                     pBar.setVisibility(View.GONE);
+                    pBar.setProgress(0);
                 }
             }
         });
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                pBar.setProgress(0);
                 pBar.setVisibility(View.VISIBLE);
                 view.loadUrl(url);
+                pBar.setVisibility(View.GONE);
                 return false;
             }
         });
