@@ -90,7 +90,7 @@ public class NewsTab extends Fragment implements SwipeRefreshLayout.OnRefreshLis
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        L.t(getActivity(), "ERROR " + error.toString());
+                        L.t(getActivity(), "ERROR " + error.toString() + "\n Please swipe down to try again");
                     }
                 });
 
@@ -137,7 +137,12 @@ public class NewsTab extends Fragment implements SwipeRefreshLayout.OnRefreshLis
 
     @Override
     public void onRefresh() {
-        sendJsonRequest();
+        mSwipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sendJsonRequest();
+            }
+        }, 3000);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 }

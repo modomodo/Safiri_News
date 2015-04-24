@@ -74,7 +74,11 @@ public class WikipediaTab extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onRefresh() {
-        webView.loadUrl(url);
+        wSwipeRefreshLayout.postDelayed(new Runnable() {
+            @Override public void run() {
+                webView.loadUrl(url);
+            }
+        }, 3000);
         wSwipeRefreshLayout.setRefreshing(false);
     }
 }
