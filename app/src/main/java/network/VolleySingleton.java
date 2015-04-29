@@ -6,7 +6,7 @@ import android.util.LruCache;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.example.michael.the_one.MyApplication;
+import com.org.michael.safiri_news.MyApplication;
 
 /**
  * Created by Michael on 07/04/2015.

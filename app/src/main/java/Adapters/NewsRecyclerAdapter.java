@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.example.michael.the_one.News;
-import com.example.michael.the_one.R;
-import com.example.michael.the_one.articleBrowser;
+import com.org.michael.safiri_news.News;
+import com.org.michael.safiri_news.R;
+import com.org.michael.safiri_news.articleBrowser;
 
 import java.util.ArrayList;
 

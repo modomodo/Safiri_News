@@ -1,4 +1,4 @@
-package com.example.michael.the_one;
+package com.org.michael.safiri_news;
 
 
 import android.os.Bundle;
@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 public class WeatherTab extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.fragment_weather,container,false);
 
         //Check out how to implement rounded view with Image at top of card
         //CardView cardView = (CardView) getActivity().findViewById(R.id.card_view);
         //cardView.setPreventCornerOverlap(false); //it is very important to get image at top properly
-        return v;
+        return inflater.inflate(R.layout.fragment_weather,container,false);
     }
 
 }

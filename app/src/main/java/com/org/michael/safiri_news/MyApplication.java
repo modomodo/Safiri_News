@@ -1,4 +1,4 @@
-package com.example.michael.the_one;
+package com.org.michael.safiri_news;
 
 import android.app.Application;
 import android.content.Context;

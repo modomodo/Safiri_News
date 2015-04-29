@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context="com.example.michael.the_one.articleBrowser">
+    tools:context="com.org.michael.safiri_news.articleBrowser">
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"

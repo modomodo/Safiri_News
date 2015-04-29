@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.michael.the_one.NewsTab;
-import com.example.michael.the_one.WeatherTab;
-import com.example.michael.the_one.WikipediaTab;
+import com.org.michael.safiri_news.NewsTab;
+import com.org.michael.safiri_news.WeatherTab;
+import com.org.michael.safiri_news.WikipediaTab;
 
 /**
 
@@ -33,17 +33,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            NewsTab newsTab = new NewsTab();
-            return newsTab;
+            return new NewsTab();
         }
         else if (position == 1)
         {
-            WikipediaTab wikipediaTab = new WikipediaTab();
-            return wikipediaTab;
+            return new WikipediaTab();
         }
         else{
-            WeatherTab weatherTab = new WeatherTab();
-            return weatherTab;
+            return new WeatherTab();
         }
     }
 
