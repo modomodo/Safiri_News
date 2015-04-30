@@ -106,7 +106,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             domain = (TextView) itemView.findViewById(R.id.txtDomain);
             time = (TextView) itemView.findViewById(R.id.txtTime);
             card= (CardView) itemView.findViewById(R.id.card_view);
-
+            //Custom listener for each viewholder created to enable onclick opening of news article
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
