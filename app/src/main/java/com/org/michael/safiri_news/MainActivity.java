@@ -99,9 +99,6 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if(id == R.id.search){
             displayPopup();
         }
@@ -112,32 +109,34 @@ public class MainActivity extends ActionBarActivity {
     //Instantiate the popup window and its layout
     private void displayPopup() {
         new MaterialDialog.Builder(this)
-                .title("Select your country")
-                .items(R.array.country_titles)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Title = text.toString();
-                        showToast("Showing content for: " + Title);
-                        getSupportActionBar().setTitle(" " + Title);
+            .title("Select your country")
+            .items(R.array.country_titles)
+            .itemsCallback(new MaterialDialog.ListCallback() {
 
-                        //Set Icon directory as string from selected value
-                        Icon = "drawable/flag_" + Title.toLowerCase().replaceAll("\\s+", "");
-                        //Obtain imageResource in int to set and change ActionBar Icon
-                        imageResource = getResources().getIdentifier(Icon, null, getPackageName());
-                        getSupportActionBar().setIcon(imageResource);
+                @Override
+                public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                    Title = text.toString();
+                    showToast("Showing content for: " + Title);
+                    getSupportActionBar().setTitle(" " + Title);
 
-                        //Save the country chosen for the fragments and other activities to customise their content
-                        sharedPreferences = getSharedPreferences("Safiri", Context.MODE_PRIVATE);
-                        editor = sharedPreferences.edit();
-                        editor.putString("query", Title);
-                        editor.commit();
+                    //Set Icon directory as string from selected value
+                    Icon = "drawable/flag_" + Title.toLowerCase().replaceAll("\\s+", "");
 
-                        //Update the viewpager which refreshes the content for all fragments
-                        pager.getAdapter().notifyDataSetChanged();
-                    }
-                })
-                .show();
+                    //Obtain imageResource in int to set and change ActionBar Icon
+                    imageResource = getResources().getIdentifier(Icon, null, getPackageName());
+                    getSupportActionBar().setIcon(imageResource);
+
+                    //Save the country chosen for the fragments and other activities to customise their content
+                    sharedPreferences = getSharedPreferences("Safiri", Context.MODE_PRIVATE);
+                    editor = sharedPreferences.edit();
+                    editor.putString("query", Title);
+                    editor.commit();
+
+                    //Update the viewpager which refreshes the content for all fragments
+                    pager.getAdapter().notifyDataSetChanged();
+                }
+            })
+        .show();
     }
 
     @Override
